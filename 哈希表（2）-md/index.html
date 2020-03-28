@@ -1,0 +1,701 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      哈希表（2）.md | Soulz Blog
+    
+  </title>
+  <meta name="author" content="Soulz">
+  <meta name="keywords" content="" />
+  <meta name="description" content="Pretty Much everything I&#39;m about" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/header-bg.jpg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="spinner">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「哈希表（2）.md」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/bro.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-one"><span class="path1"></span><span class="path2"></span></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-zhihu"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-sina-weibo "></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-pinterest2"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-instagram"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-twitter"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%882%EF%BC%89-md/index.html" itemprop="url">
+		哈希表（2）.md
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	更新于
+
+	<a href="/%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%882%EF%BC%89-md/index.html" itemprop="url">
+		<time datetime="2020-03-27T05:58:55.000Z" itemprop="dateUpdated">
+	  		2020-03-28
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+						
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<h2 id="非散链的哈希表方法"><a href="#非散链的哈希表方法" class="headerlink" title="非散链的哈希表方法"></a>非散链的哈希表方法</h2><p>​    散链表进行哈希表实现主要有两个缺点，一是需要实现另一个数据结构比较复杂，二是分配链表空间需要额外时间。因此，我们要找到其他的方法，使得<strong>key</strong>直接能够填充在哈希表当中。因此，我们定义一种方法叫作collision处理方法，即对一系列的编号(h0(x),h1(x),h2(x)…)定义为hi(x)=(hash(x)+f(i)) mod <strong>Tablesize</strong> , f(i)为probing函数，当某编号出现哈希表空置时，即储存到该哈希表中。因此，collision处理方法的差异主要取决于probing函数f(i)的性质。</p>
+<h3 id="线性Probing"><a href="#线性Probing" class="headerlink" title="线性Probing"></a>线性Probing</h3><p>f(i)为i的线性函数，这里取f(i)=i。以<strong>key</strong>序列{89,18,48,58,69}的插入为例，插入方法如图。</p>
+<p><img src="/%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%882%EF%BC%89-md/index/linear.jpg" alt="linear"></p>
+<p>不难看出，这种方法会导致在局部形成一个数据簇合，使得即便在表内空间较多的情况下，进行一次插入仍然需要额外的时间花费。计算表明在足够大的哈希表中采用线性probing函数情况下，插入和无结果搜索的平均试错次数为$0.5+0.5/(1-/lambda)^2$，而成功搜索的平均试错次数为$0.5+0.5/(1-/lambda)$，因此对于$/lambda$大于0.5的哈希表来说，使用线性probing不是一个好方法。</p>
+<h3 id="平方Probing"><a href="#平方Probing" class="headerlink" title="平方Probing"></a>平方Probing</h3><p>取F(i)=$ki^2$，这里取k=1。对于这种probing方法，最大的问题在于在$/lambda$大于0.5或是Tablesize不为质数时，无法保证能够填满整个哈希表。同时，该Probing方法也不能使用正常的删除方法，因为删除某个成员可能会导致之后所有的查找方法都变得不可用。</p>
+<p>​    非散链表实现的哈希表的类声明如下。注意这里使用了一个enum类型来表明某个成员的状态。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> HashedObj&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hashtable</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Hashtable</span><span class="params">(<span class="keyword">int</span> <span class="built_in">size</span> = <span class="number">101</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">contains</span><span class="params">(<span class="keyword">const</span> HashedObj &amp;x)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">makeEmpty</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">insert</span><span class="params">(<span class="keyword">const</span> HashedObj &amp; x)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">insert</span><span class="params">(HashedObj &amp;&amp; x)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> HashedObj &amp; x)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">enum</span> EntryType &#123;ACTIVE, EMPTY, DELETED&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">HashEntry</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        HashedObj element;</span><br><span class="line">        EntryType info;</span><br><span class="line">        </span><br><span class="line">        HashEntry(<span class="keyword">const</span> HashedObj &amp; e = HashedObj&#123;&#125;, EntryType i = EMPTY)</span><br><span class="line">        :element&#123;e&#125;,info&#123;i&#125;&#123;&#125;</span><br><span class="line">         HashEntry(HashedObj &amp;&amp; e = HashedObj&#123;&#125;, EntryType i = EMPTY)</span><br><span class="line">        :element&#123;<span class="built_in">std</span>::<span class="built_in">move</span> e&#125;,info&#123;i&#125;&#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">vector</span>&lt;HashEntry&gt; <span class="built_in">array</span>;</span><br><span class="line">    <span class="keyword">int</span> currentSize;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isActive</span><span class="params">(<span class="keyword">int</span> currentPos)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findPos</span><span class="params">(<span class="keyword">const</span> HashedObj &amp;x)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">rehash</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">size_t</span> <span class="title">myhash</span><span class="params">(<span class="keyword">const</span> HashedObj &amp; x)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来只列出一些关键的方法实现。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findPos</span><span class="params">(<span class="keyword">const</span> HashedObj &amp; x)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> offset = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> currentPos = myhash(x);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">array</span>[currentPos].info != EMPTY &amp;&amp; <span class="built_in">array</span>[currentPos].element != x)</span><br><span class="line">    &#123;</span><br><span class="line">        currentPos += offset;</span><br><span class="line">        offset += <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(currentPos &gt;= <span class="built_in">array</span>.<span class="built_in">size</span>())</span><br><span class="line">            currentPos-=<span class="built_in">array</span>.<span class="built_in">size</span>(); <span class="comment">//超限之后回到哈希表顶</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> currentPos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">insert</span><span class="params">(<span class="keyword">const</span> HashedObj&amp; x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> currentPos = findPos(x);</span><br><span class="line">    <span class="keyword">if</span>(isActive(currentPos))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">array</span>[currentPos].element = x;</span><br><span class="line">    <span class="built_in">array</span>[currentPos].info=ACTIVE;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(++CurrentSize &gt; <span class="built_in">array</span>.<span class="built_in">size</span>()/<span class="number">2</span>)</span><br><span class="line">        rehash();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> HashedObj&amp; x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> currentPos = findPos(x);</span><br><span class="line">    <span class="keyword">if</span>(!isActive(currentPos))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">array</span>[currentPos].info = DELETED;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然而，在平方probing中也会出现二级数据簇合的情况，而且这种情况从数学上研究起来要复杂得多。</p>
+<h3 id="双重Probing"><a href="#双重Probing" class="headerlink" title="双重Probing"></a>双重Probing</h3><p>采用如下的probing函数：f(i)=i*hash2(x)。hash2(x)为一个二级哈希函数，这个函数的因变量不能为0，否则f(i)会产生重复数值。同时，也要尽可能保证f(i)能探查到所有的单元。常用的二级哈希函数为hash2(x)=R-(x mod R)，其中R为一个小于Tablesize的质数。在使用双重Probing时，应该尽可能保证Tablesize为一个质数。</p>
+<h2 id="哈希表扩张-Rehashing"><a href="#哈希表扩张-Rehashing" class="headerlink" title="哈希表扩张(Rehashing)"></a>哈希表扩张(Rehashing)</h2><p>​    当在一个哈希表当中执行一次插入后$/lambda$大于某个特定值之后，一系列的哈希表方法的耗时都会受到很大的影响。因此，必须要使用Rehash()方法，开辟一个更大的哈希表，并对之前的内容按原有进行重新填充。rehash()往往会开辟一个略大于原先Tablesize一倍大小的空间，并且是可容纳质数个成员的空间。这种操作执行一次是比较耗时的，为O(N)操作。然而因为在每次rehash()之间至少间隔了N/2次插入操作，故不妨将其看作是平摊到每次插入操作上的一个常数项耗时。</p>
+<p>​    对于平方probing的rehash有三种方法，一是$/lambda$超过0.5就进行rehash，二是出现了一次不成功的插入之后进行rehash，三是折中一下，取某个超过0.5的$/lambda$值作为标杆。在实践中，发现最后一种方法往往最为高效。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//考察非散链表中的rehash方法</span></span><br><span class="line"><span class="keyword">void</span> rehash</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;HashEntry&gt; oldArray = <span class="built_in">array</span>;</span><br><span class="line">    <span class="built_in">array</span>.resize(nextPrime(<span class="number">2</span>*oldArray.<span class="built_in">size</span>()));</span><br><span class="line"> 	<span class="keyword">for</span>(<span class="keyword">auto</span> &amp; entry:<span class="built_in">array</span>)</span><br><span class="line">        entry.info = EMPTY;</span><br><span class="line">    </span><br><span class="line">    currentSize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> &amp; entry : oldArray)</span><br><span class="line">        <span class="keyword">if</span>(entry.info==ACTIVE)</span><br><span class="line">          insert(<span class="built_in">std</span>::<span class="built_in">move</span>(entry.element));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="C-标准库中的哈希表"><a href="#C-标准库中的哈希表" class="headerlink" title="C++ 标准库中的哈希表"></a>C++ 标准库中的哈希表</h2><p>​    在C++11的标准库中新增了用哈希表所实现的set和map，即unordered_set与unordered_map。在unordered_set的成员以及unordered_map的key中必须提供一个==方法以及一个哈希函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个大小写不敏感string组成的unordered_set</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CaseInsensitiveStringHash</span></span></span><br><span class="line"><span class="class">&#123;</span><span class="comment">//两个函数类的实现。</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">size_t</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">static</span> hash&lt;<span class="built_in">string</span>&gt; hf;</span><br><span class="line">        <span class="keyword">return</span> hf(toLower(s));</span><br><span class="line">&#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;lhs, <span class="keyword">const</span> <span class="built_in">string</span> &amp; rhs)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> equalsIgnoreCase(lhs, rhs);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>, CaseInsensitiveStringHash, CaseInsensitiveStringHash&gt; s;</span><br></pre></td></tr></table></figure>
+
+
+
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/cart_cover.jpg"></div>
+
+		<!-- relate post, comment...-->
+		<div class="investment-container">
+			<div class="investment-header">
+				<div class="investment-title-1">
+					<div class="on">相关文章</div>
+					<div>评论</div>
+					<div>分享</div>
+				</div>
+				<div class="investment-title-2">	            
+					
+	<span>
+		<a id="totop-post-page">返回顶部</a>
+		
+		
+			<a href="/music-from-last-week-1/index.html" title="music from last week(1)" rel="next">
+				下一篇&raquo;
+			</a>
+			
+	</span>
+
+
+      		
+				</div>	
+			</div>
+			
+			<div class="investment-content">
+				<div class="investment-content-list">
+					
+
+<div class="relate-post">
+	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/music-from-last-week-1/index.html" title="music from last week(1)">
+								music from last week(1)			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 25日, 2020				
+							</p>
+							<p class="relate-post-content">
+								​    之后基本每周将本周比较精听的几张专辑/EP/单曲进行收录，并且进行一些简短的评论。因为是我听过听多遍了的东西，所以基本不会有我觉得烂的！除非我觉得烂得属实离谱拿出来游街示众。只代表个人意见，会参考一些相关资料，希望大伙能从我...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/music-from-last-week-1/index.html" title="music from last week(1)">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="music from last week(1)"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%881%EF%BC%89%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3%E4%B8%8E%E6%95%A3%E9%93%BE%E8%A1%A8/index.html" title="哈希表（1）基本思想与散链表">
+								哈希表（1）基本思想与散链表			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								哈希表的基本思想​    一个哈希表的数据成员应当由两个部分组成。
+第一个部分为key,即在进行搜索以及映射时依照的数据。第二个部分为其他的数据内容，可以根据key链接到。所有的数据成员应当被存储在一个数据空间中。令这个数据空间存储的...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%881%EF%BC%89%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3%E4%B8%8E%E6%95%A3%E9%93%BE%E8%A1%A8/index.html" title="哈希表（1）基本思想与散链表">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="哈希表（1）基本思想与散链表"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/%E5%88%9B%E7%AB%8B%E5%8D%9A%E5%AE%A2manifesto/index.html" title="创立博客Manifesto">
+								创立博客Manifesto			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 22日, 2020				
+							</p>
+							<p class="relate-post-content">
+								​    我是一条懒狗。长期以来都是如此。
+​    但是我不大想当懒狗了，所以我希望能有一些定期的智力活动来规束自己，让自己理解我仍然是一个有智力追求的智人而非一条混吃等死看到什么东西就会狂吠或者会摇尾巴的土狗。
+​    我希望我...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/%E5%88%9B%E7%AB%8B%E5%8D%9A%E5%AE%A2manifesto/index.html" title="创立博客Manifesto">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="创立博客Manifesto"/>
+							</a>
+						</div>
+					</li>												
+			
+		</ul>
+	
+</div>	
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-comment">
+
+	
+		<div class="config-info">
+			Please check the parameter of <b>comment</b> in config.yml of hexo-theme-Annie!
+		</div>	
+	
+
+</div>
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-share">
+	
+	
+
+		
+			
+			<!-- socialShare share -->
+			<div class="social-share"></div>
+
+<!--  css & js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+			
+		
+		
+	
+</div>
+
+
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<!-- show math formula -->
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2017 - 2020, content by Sariay. All Rights Reserved.
+			
+			
+				<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+
+
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+	</div>		
+</footer>
+		
+
+<!-- love effect -->
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	</body>	
+</html>
